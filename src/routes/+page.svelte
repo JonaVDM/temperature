@@ -1,8 +1,31 @@
 <script lang="ts">
-	export let data;
+	import { pb } from '$lib/pocketbase.js';
+	import type { RecordSubscription } from 'pocketbase';
+	import type { ClimateRecord } from '$lib/types';
+	import { onDestroy, onMount } from 'svelte';
 
-	$: temp = data.current.items[0].temperature;
-	$: date = new Date(data.current.items[0].created);
+	export let data;
+	let entry: ClimateRecord;
+
+	onMount(() => {
+		entry = data.current.items[0];
+		pb.collection('climate').subscribe('*', onUpdate);
+	});
+
+	onDestroy(() => {
+		pb.collection('climate').unsubscribe('*');
+	});
+
+	function onUpdate(data: RecordSubscription<ClimateRecord>) {
+		if (data.action != 'create') {
+			return;
+		}
+
+		entry = data.record;
+	}
+
+	$: temp = entry ? entry.temperature : '';
+	$: date = entry ? new Date(entry.created) : new Date();
 </script>
 
 <p>{date.toLocaleDateString()} {date.toLocaleTimeString()}</p>

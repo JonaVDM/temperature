@@ -3,7 +3,6 @@
 	export let temperature: number;
 
 	function formatTime() {
-		console.log(new Date(time));
 		const date = new Date(time);
 		const now = date.getHours();
 

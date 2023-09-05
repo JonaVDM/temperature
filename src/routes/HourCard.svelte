@@ -18,7 +18,7 @@
 		{formatTime()}
 	</p>
 
-	<p class="text-xl">
+	<p class="text-2xl font-thin">
 		{temperature}°C
 	</p>
 </div>

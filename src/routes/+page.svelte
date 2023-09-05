@@ -30,10 +30,10 @@
 </script>
 
 <div>
-	<p>{date.toLocaleDateString()} {date.toLocaleTimeString()}</p>
-	<p class="text-7xl md:text-8xl lg:text-9xl text-center">{temp}°C</p>
+	<p class="font-thin">{date.toLocaleDateString()} {date.toLocaleTimeString()}</p>
+	<p class="text-7xl md:text-8xl lg:text-9xl text-center font-thin">{temp}°C</p>
 
-	<div class="pt-4 flex flex-col gap-3">
+	<div class="pt-4 flex flex-col gap-4">
 		{#each Object.entries(data.weather.perHour) as [key, value]}
 			<HourCard time={Number(key)} temperature={value} />
 		{/each}

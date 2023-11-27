@@ -33,9 +33,4 @@
 	}
 </script>
 
-<div class="container">
-	<div class="max-w-md">
-		<ButtonLink to="/" title="Back to overview" />
-	</div>
-	<canvas use:chartAction />
-</div>
+<canvas use:chartAction />

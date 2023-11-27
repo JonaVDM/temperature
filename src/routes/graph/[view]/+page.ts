@@ -2,7 +2,7 @@ import { pb } from "$lib/pocketbase";
 import type { Record } from "pocketbase";
 import type { PageLoad } from "./$types";
 
-interface DailyRecord extends Record {
+interface ViewRecord extends Record {
   row: string;
   day: string;
   min: number;
@@ -10,8 +10,8 @@ interface DailyRecord extends Record {
   max: number;
 }
 
-export const load: PageLoad = () => {
-  const data = pb.collection('daily').getList<DailyRecord>(1, 500);
+export const load: PageLoad = ({ params }) => {
+  const data = pb.collection(params.view).getList<ViewRecord>(1, 500);
 
   return {
     data

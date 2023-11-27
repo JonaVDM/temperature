@@ -10,7 +10,7 @@
 		}
 
 		const labels = data.data.items.map((el) => {
-			return el.day;
+			return el.id;
 		});
 
 		const min = data.data.items.map((el) => {
@@ -43,11 +43,14 @@
 						label: 'Avg'
 					}
 				]
+			},
+			options: {
+				maintainAspectRatio: false
 			}
 		});
 	}
 </script>
 
-<!-- <pre>{JSON.stringify(data, null, 2)}</pre> -->
-
-<canvas use:chartAction />
+{#key data.data.items[0].collectionId}
+	<canvas use:chartAction />
+{/key}
